@@ -22,7 +22,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 // Connect to Mongo &
 // Fix Depreciation Warnings from Mongoose
 // May or may not need these depending on your Mongoose version
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI );
 
 // Error / success
 db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
