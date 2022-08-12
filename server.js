@@ -48,9 +48,42 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 // Routes
 //___________________
 //localhost:3000
+
+app.delete("/employee/:id", (req, res) => {
+    res.redirect('/employee')
+})
+
 app.get('/' , (req, res) => {
   res.send('Hello World!');
 });
+
+app.get('/login', (req, res) => {
+    res.render('login.ejs')
+})
+
+app.get('/homepage', (req, res) => {
+    res.render('index.ejs')
+})
+
+app.get('/employee', (req, res) => {
+    res.render('show.ejs')
+})
+
+app.get('/employee/new', (req, res) => {
+    res.render('new.ejs')
+})
+
+app.post('/employee', (req, res) => {
+    res.redirect('/employee')
+})
+
+app.get('/employee/:id/edit', (req, res) => {
+    res.render('edit.ejs')
+})
+
+app.put('/employee/:id', (req, res) => {
+    res.redirect('/employee')
+})
 
 //___________________
 //Listener
