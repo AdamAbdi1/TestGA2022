@@ -4,6 +4,7 @@
 const express = require('express');
 const methodOverride  = require('method-override');
 const mongoose = require ('mongoose');
+const Employee = require('./models/employee.js')
 const app = express ();
 const db = mongoose.connection;
 require('dotenv').config()
@@ -50,7 +51,9 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //localhost:3000
 
 app.delete("/employee/:id", (req, res) => {
-    res.redirect('/employee')
+    Employee.findByIdAndRemove(req.params.id, (err, data) => {
+        res.redirect('/employee')
+    })
 })
 
 app.get('/' , (req, res) => {
@@ -66,23 +69,39 @@ app.get('/homepage', (req, res) => {
 })
 
 app.get('/employee', (req, res) => {
-    res.render('show.ejs')
+    Employee.find({}, (err, data) => {
+        res.render('show.ejs', {
+            employee: data
+        })
+    })
 })
 
 app.get('/employee/new', (req, res) => {
     res.render('new.ejs')
 })
 
-app.post('/employee', (req, res) => {
-    res.redirect('/employee')
+app.post('/employee/', (req, res) => {
+    Employee.create(req.body, (err, data) => {
+        res.redirect('/employee')
+    })
+})
+
+app.get('/employee/:id', (req, res) => {
+    res.send('change')
 })
 
 app.get('/employee/:id/edit', (req, res) => {
-    res.render('edit.ejs')
+    Employee.findById(req.params.id, (err, data) => {
+        res.render('edit.ejs', {
+            employee: data
+        })
+    })
 })
 
 app.put('/employee/:id', (req, res) => {
-    res.redirect('/employee')
+    Employee.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, data) => {
+        res.redirect('/employee')
+    })
 })
 
 //___________________

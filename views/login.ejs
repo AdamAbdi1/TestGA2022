@@ -10,10 +10,10 @@
     <h1>LOGIN</h1>
     <p>please enter username and password to login, or sign up to create an account</p>
     <form>
-        username: <input type="text" name="username" placeholder="Enter Username" /><br/>
-        password: <input type="password" name="password" placeholder="Enter password" /><br/>
-        <!-- <input type="submit" value="Login" /> -->
-        <button type="submit">Login</button>
+        username: <input type="text" name="username" placeholder="Enter Username" required /><br/>
+        password: <input type="password" name="password" placeholder="Enter password" required /><br/>
+        <input type="button" onclick="parent.location='/homepage'" value="Login" />
+        <!-- <button type="submit">Login</button> -->
         <label>
         <input type="checkbox" name="remember"> remember me
         </label>

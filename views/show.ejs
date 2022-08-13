@@ -5,11 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Employees</h1>
     <input type="button" onclick="parent.location='/employee/new'" value="add employee" />
-    <h2>picture first last email</h2>
+    <table style="width: 100%">
+        <tr class="fire">
+            <th class="fire">Avatar</th>
+            <th class="fire">First</th>
+            <th class="fire">Last</th>
+            <th class="fire">Email</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <% for(let i = 0; i < employee.length; i++){ %>
+            <tr class="fire">
+                <td class="fire"></td>
+                <td class="fire"><%=employee[i].first%></td>
+                <td class="fire"><%=employee[i].last%></td>
+                <td class="fire"><%=employee[i].email%></td>
+                <td><input type="button" onclick="parent.location='/employee/<%=employee[i].id%>/edit'" value="edit" /></td>
+                <form action="/employee/<%=employee[i].id%>?_method=DELETE" method="POST">
+                <td><input type="submit" value="delete"/></td>
+                </form>
+            </tr>
+        <% } %>
+    </table>
     <button onclick="history.back()">back</button>
 </body>
 </html>
