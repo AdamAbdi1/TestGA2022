@@ -86,6 +86,7 @@ app.get('/homepage', (req, res) => {
     Employee.find({}, (err, data) => {
         res.render('index.ejs', {
             employee: data,
+            currentUser: req.session.currentUser
         })
     })
 })
