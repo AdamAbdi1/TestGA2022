@@ -71,7 +71,7 @@ app.delete("/employee/:id", (req, res) => {
 })
 
 app.get('/' , (req, res) => {
-  res.render('welcome.ejs');
+  res.send('welcome.ejs');
 });
 
 app.get('/login', (req, res) => {
