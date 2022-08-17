@@ -70,7 +70,7 @@ app.delete("/employee/:id", (req, res) => {
     })
 })
 
-sessions.get('/home', (req, res) => {
+app.get('/home', (req, res) => {
     res.render('home.ejs')
 })
 
