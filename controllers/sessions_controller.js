@@ -4,13 +4,7 @@ const sessions = express.Router()
 const User = require('../models/users.js')
 const mongoURI = process.env.MONGODB_URI || 3003;
 
-app.use(
-    session({
-      secret: process.env.SECRET, //a random string do not copy this value or your stuff will get hacked
-      resave: false, // default more info: https://www.npmjs.com/package/express-session#resave
-      saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
-    })
-  )
+
 
 sessions.get('/new', (req, res) => {
     res.render('sessions/new.ejs', { currentUser: req.session.currentUser })
