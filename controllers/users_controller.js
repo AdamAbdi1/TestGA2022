@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const express = require('express')
 const users = express.Router()
 const User = require('../models/users.js')
+const mongoURI = process.env.MONGODB_URI || 3003;
 
 users.get('/new', (req, res) => {
     res.render('users/new.ejs')
