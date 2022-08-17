@@ -15,7 +15,7 @@ require('dotenv').config()
 //Port
 //___________________
 // Allow use of Heroku's port or your own local port, depending on the environment
-const PORT = process.env.PORT || 3003;
+// const PORT = process.env.PORT || 3003;
 
 //___________________
 //Database
@@ -130,4 +130,4 @@ app.put('/employee/:id', (req, res) => {
 //___________________
 //Listener
 //___________________
-app.listen(PORT, () => console.log( 'Listening on port:', PORT));
+app.listen(process.env.PORT , () => console.log( process.env.PORT ));
