@@ -2,13 +2,13 @@
 //Dependencies
 //___________________
 const express = require('express');
-const methodOverride  = require('method-override');
+const methodOverride = require('method-override');
 const session = require('express-session')
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
 const Employee = require('./models/employee.js')
 const userController = require('./controllers/users_controller.js')
 const sessionsController = require('./controllers/sessions_controller.js')
-const app = express ();
+const app = express();
 const db = mongoose.connection;
 require('dotenv').config()
 //___________________
@@ -26,7 +26,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 // Connect to Mongo &
 // Fix Depreciation Warnings from Mongoose
 // May or may not need these depending on your Mongoose version
-mongoose.connect(MONGODB_URI );
+mongoose.connect(MONGODB_URI);
 
 // Error / success
 db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
@@ -39,12 +39,12 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 
 app.use(
     session({
-      secret: process.env.SECRET, //a random string do not copy this value or your stuff will get hacked
-      resave: false, // default more info: https://www.npmjs.com/package/express-session#resave
-      saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
+        secret: 'secretidhere', //a random string do not copy this value or your stuff will get hacked
+        resave: false, // default more info: https://www.npmjs.com/package/express-session#resave
+        saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
     })
-  )
-  
+)
+
 //use public folder for static assets
 app.use(express.static('public'));
 
@@ -74,8 +74,8 @@ app.get('/home', (req, res) => {
     res.render('home.ejs')
 })
 
-app.get('/' , (req, res) => {
-  res.render('welcome.ejs');
+app.get('/', (req, res) => {
+    res.render('welcome.ejs');
 });
 
 
@@ -122,7 +122,7 @@ app.get('/employee/:id/edit', (req, res) => {
 })
 
 app.put('/employee/:id', (req, res) => {
-    Employee.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, data) => {
+    Employee.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, data) => {
         res.redirect('/employee')
     })
 })
@@ -130,4 +130,4 @@ app.put('/employee/:id', (req, res) => {
 //___________________
 //Listener
 //___________________
-app.listen(process.env.PORT , () => console.log( process.env.PORT ));
+app.listen(process.env.PORT, () => console.log(process.env.PORT));
