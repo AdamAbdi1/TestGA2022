@@ -1,112 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 </head>
+
 <body>
     <h1>Employee Shift Schedule</h1>
     <input type="button" onclick="parent.location='/employee'" value="view list of employees" />
-    <table style="width: 100%" class="fire">
-        <tr class="fire">
-            <th>Monday</th>
-            <th>7:00 AM</th>
-            <th>8:00 AM</th>
-            <th>9:00 AM</th>
-            <th>10:00 AM</th>
-            <th>11:00 AM</th>
-            <th>12:00 PM</th>
-            <th>1:00 PM</th>
-            <th>2:00 PM</th>
-            <th>3:00 PM</th>
-        </tr>
-        <tr>
-            <td class="water">Adam</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-        </tr>
-        <tr class="fire">
-            <th>Tuesday</th>
-            <th>7:00 AM</th>
-            <th>8:00 AM</th>
-            <th>9:00 AM</th>
-            <th>10:00 AM</th>
-            <th>11:00 AM</th>
-            <th>12:00 PM</th>
-            <th>1:00 PM</th>
-            <th>2:00 PM</th>
-            <th>3:00 PM</th>
-        </tr>
-        <tr>
-            <td class="water">Adam</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-        </tr>
-        <tr class="fire">
-            <th>Wednsday</th>
-            <th>7:00 AM</th>
-            <th>8:00 AM</th>
-            <th>9:00 AM</th>
-            <th>10:00 AM</th>
-            <th>11:00 AM</th>
-            <th>12:00 PM</th>
-            <th>1:00 PM</th>
-            <th>2:00 PM</th>
-            <th>3:00 PM</th>
-        </tr>
-        <tr>
-            <td class="water">Thursday</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-        </tr>
-        <tr class="fire">
-            <th>Friday</th>
-            <th>7:00 AM</th>
-            <th>8:00 AM</th>
-            <th>9:00 AM</th>
-            <th>10:00 AM</th>
-            <th>11:00 AM</th>
-            <th>12:00 PM</th>
-            <th>1:00 PM</th>
-            <th>2:00 PM</th>
-            <th>3:00 PM</th>
-        </tr>
-        <tr>
-            <td class="water">Adam</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-            <td class="water">manager</td>
-        </tr>
-    </table>
+    <div class="table-responsive table-hover">
+        <table style="width: 100%;" class="table">
+            <thead class="thead-light">
+            <tr>
+                <th>Monday</th>
+                <th>7:00 AM</th>
+                <th>8:00 AM</th>
+                <th>9:00 AM</th>
+                <th>10:00 AM</th>
+                <th>11:00 AM</th>
+                <th>12:00 PM</th>
+                <th>1:00 PM</th>
+                <th>2:00 PM</th>
+                <th>3:00 PM</th>
+            </tr>
+            </thead>
+            <% for (let i = 0; i < employee.length; i++) { %>
+                <% if(employee[i].morning === 'on') {%>
+                    <tr class="table-info">
+                        <td><%=employee[i].first%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                <%}%>
+                <% if(employee[i].evening === 'on') {%>
+                    <tr class="table-info">
+                        <td><%=employee[i].first%></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                    </tr>
+                <%}%>
+            <%}%>
+            <thead class="thead-light">
+            <tr>
+                <th>Tuesday</th>
+                <th>7:00 AM</th>
+                <th>8:00 AM</th>
+                <th>9:00 AM</th>
+                <th>10:00 AM</th>
+                <th>11:00 AM</th>
+                <th>12:00 PM</th>
+                <th>1:00 PM</th>
+                <th>2:00 PM</th>
+                <th>3:00 PM</th>
+            </tr>
+            </thead>
+            <% for (let i = 0; i < employee.length; i++) { %>
+                <% if(employee[i].morning === 'on') {%>
+                    <tr class="table-info">
+                        <td><%=employee[i].first%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                <%}%>
+                <% if(employee[i].evening === 'on') {%>
+                    <tr class="table-info">
+                        <td><%=employee[i].first%></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                    </tr>
+                <%}%>
+            <%}%>
+            <thead class="thead-light">
+            <tr>
+                <th>Wednsday</th>
+                <th>7:00 AM</th>
+                <th>8:00 AM</th>
+                <th>9:00 AM</th>
+                <th>10:00 AM</th>
+                <th>11:00 AM</th>
+                <th>12:00 PM</th>
+                <th>1:00 PM</th>
+                <th>2:00 PM</th>
+                <th>3:00 PM</th>
+            </tr>
+            </thead>
+            <% for (let i = 0; i < employee.length; i++) { %>
+                <% if(employee[i].morning === 'on') {%>
+                    <tr class="table-info">
+                        <td><%=employee[i].first%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                <%}%>
+                <% if(employee[i].evening === 'on') {%>
+                    <tr class="table-info">
+                        <td><%=employee[i].first%></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                    </tr>
+                <%}%>
+            <%}%>
+            <thead class="thead-light">
+            <tr>
+                <th>Thursday</th>
+                <th>7:00 AM</th>
+                <th>8:00 AM</th>
+                <th>9:00 AM</th>
+                <th>10:00 AM</th>
+                <th>11:00 AM</th>
+                <th>12:00 PM</th>
+                <th>1:00 PM</th>
+                <th>2:00 PM</th>
+                <th>3:00 PM</th>
+            </tr>
+            </thead>
+            <% for (let i = 0; i < employee.length; i++) { %>
+                <% if(employee[i].morning === 'on') {%>
+                    <tr class="table-info">
+                        <td><%=employee[i].first%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                <%}%>
+                <% if(employee[i].evening === 'on') {%>
+                    <tr class="table-info">
+                        <td><%=employee[i].first%></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                    </tr>
+                <%}%>
+            <%}%>
+            <thead class="thead-light">
+            <tr>
+                <th>Friday</th>
+                <th>7:00 AM</th>
+                <th>8:00 AM</th>
+                <th>9:00 AM</th>
+                <th>10:00 AM</th>
+                <th>11:00 AM</th>
+                <th>12:00 PM</th>
+                <th>1:00 PM</th>
+                <th>2:00 PM</th>
+                <th>3:00 PM</th>
+            </tr>
+            </thead>
+            <% for (let i = 0; i < employee.length; i++) { %>
+                <% if(employee[i].morning === 'on') {%>
+                    <tr class="table-info">
+                        <td><%=employee[i].first%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                <%}%>
+                <% if(employee[i].evening === 'on') {%>
+                    <tr class="table-info">
+                        <td><%=employee[i].first%></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                        <td><%=employee[i].role%></td>
+                    </tr>
+                <%}%>
+            <%}%>
+        </table>
+    </div>
 </body>
+
 </html>

@@ -12,12 +12,11 @@
     <form>
         username: <input type="text" name="username" placeholder="Enter Username" required /><br/>
         password: <input type="password" name="password" placeholder="Enter password" required /><br/>
-        <input type="button" onclick="parent.location='/homepage'" value="Login" />
-        <!-- <button type="submit">Login</button> -->
+        <input type="button" onclick="parent.location='/sessions/new'" value="Login" />
         <label>
         <input type="checkbox" name="remember"> remember me
         </label>
-        <span><a href="#">Forgot Password?</a></span>
+        <span><a href="/users/new">Sign Up?</a></span>
     </form>
 </body>
 </html>

@@ -3,8 +3,11 @@
 //___________________
 const express = require('express');
 const methodOverride  = require('method-override');
+const session = require('express-session')
 const mongoose = require ('mongoose');
 const Employee = require('./models/employee.js')
+const userController = require('./controllers/users_controller.js')
+const sessionsController = require('./controllers/sessions_controller.js')
 const app = express ();
 const db = mongoose.connection;
 require('dotenv').config()
@@ -34,6 +37,14 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 //Middleware
 //___________________
 
+app.use(
+    session({
+      secret: process.env.SECRET, //a random string do not copy this value or your stuff will get hacked
+      resave: false, // default more info: https://www.npmjs.com/package/express-session#resave
+      saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
+    })
+  )
+  
 //use public folder for static assets
 app.use(express.static('public'));
 
@@ -44,6 +55,9 @@ app.use(express.json());// returns middleware that only parses JSON - may or may
 //use method override
 app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 
+app.use('/users', userController)
+
+app.use('/sessions', sessionsController)
 
 //___________________
 // Routes
@@ -57,15 +71,21 @@ app.delete("/employee/:id", (req, res) => {
 })
 
 app.get('/' , (req, res) => {
-  res.send('Hello World!');
+  res.render('welcome.ejs');
 });
 
 app.get('/login', (req, res) => {
-    res.render('login.ejs')
+    res.render('login.ejs', {
+        currentUser: req.session.currentUser
+    })
 })
 
 app.get('/homepage', (req, res) => {
-    res.render('index.ejs')
+    Employee.find({}, (err, data) => {
+        res.render('index.ejs', {
+            employee: data,
+        })
+    })
 })
 
 app.get('/employee', (req, res) => {
@@ -77,7 +97,10 @@ app.get('/employee', (req, res) => {
 })
 
 app.get('/employee/new', (req, res) => {
-    res.render('new.ejs')
+    res.render('new.ejs', {
+        currentUser: req.session.currentUser
+      
+    })
 })
 
 app.post('/employee/', (req, res) => {
@@ -87,13 +110,19 @@ app.post('/employee/', (req, res) => {
 })
 
 app.get('/employee/:id', (req, res) => {
-    res.send('change')
+    Employee.findById(req.params.id, (err, data) => {
+        res.render('indiv.ejs', {
+            employee: data,
+            currentUser: req.session.currentUser
+        })
+    })
 })
 
 app.get('/employee/:id/edit', (req, res) => {
     Employee.findById(req.params.id, (err, data) => {
         res.render('edit.ejs', {
-            employee: data
+            employee: data,
+            currentUser: req.session.currentUser
         })
     })
 })

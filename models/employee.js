@@ -6,11 +6,8 @@ const employeeSchema = new mongoose.Schema({
     email: {type: String, required: true},
     role: {type: String, required: true},
     image: String,
-    monday: String,
-    tuesday: String,
-    wednesday: String,
-    thursday: String,
-    friday: String,
+    morning: String,
+    evening: String
 })
 
 const Employee = mongoose.model('Employee', employeeSchema)
