@@ -78,9 +78,6 @@ app.get('/' , (req, res) => {
   res.render('welcome.ejs');
 });
 
-app.get('/login', (req, res) => {
-    res.render('login.ejs')
-})
 
 app.get('/homepage', (req, res) => {
     Employee.find({}, (err, data) => {
