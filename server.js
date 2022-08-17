@@ -51,6 +51,7 @@ app.use(express.static('public'));
 // populates req.body with parsed info from forms - if no data from forms will return an empty object {}
 app.use(express.urlencoded({ extended: false }));// extended: false - does not allow nested objects in query strings
 app.use(express.json());// returns middleware that only parses JSON - may or may not need it depending on your project
+app.use(express.session());
 
 //use method override
 app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
@@ -80,13 +81,12 @@ app.get('/' , (req, res) => {
 
 
 app.get('/homepage', (req, res) => {
-    res.send('https://fast-atoll-14586.herokuapp.com')
-    // Employee.find({}, (err, data) => {
-    //     res.render('index.ejs', {
-    //         employee: data,
-    //         currentUser: req.session.currentUser
-    //     })
-    // })
+    Employee.find({}, (err, data) => {
+        res.render('index.ejs', {
+            employee: data,
+            currentUser: req.session.currentUser
+        })
+    })
 })
 
 app.get('/employee', (req, res) => {
