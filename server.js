@@ -64,68 +64,68 @@ app.use('/sessions', sessionsController)
 //___________________
 //localhost:3000
 
-app.delete("/employee/:id", (req, res) => {
-    Employee.findByIdAndRemove(req.params.id, (err, data) => {
-        res.redirect('/employee')
-    })
-})
+// app.delete("/employee/:id", (req, res) => {
+//     Employee.findByIdAndRemove(req.params.id, (err, data) => {
+//         res.redirect('/employee')
+//     })
+// })
 
-app.get('/home', (req, res) => {
-    res.render('home.ejs')
-})
+// app.get('/home', (req, res) => {
+//     res.render('home.ejs')
+// })
 
-app.get('/' , (req, res) => {
-  res.render('welcome.ejs');
-});
+// app.get('/' , (req, res) => {
+//   res.render('welcome.ejs');
+// });
 
 
-app.get('/homepage', (req, res) => {
-    Employee.find({}, (err, data) => {
-        res.render('index.ejs', {
-            employee: data,
-        })
-    })
-})
+// app.get('/homepage', (req, res) => {
+//     Employee.find({}, (err, data) => {
+//         res.render('index.ejs', {
+//             employee: data,
+//         })
+//     })
+// })
 
-app.get('/employee', (req, res) => {
-    Employee.find({}, (err, data) => {
-        res.render('show.ejs', {
-            employee: data
-        })
-    })
-})
+// app.get('/employee', (req, res) => {
+//     Employee.find({}, (err, data) => {
+//         res.render('show.ejs', {
+//             employee: data
+//         })
+//     })
+// })
 
-app.get('/employee/new', (req, res) => {
-    res.render('new.ejs')
-})
+// app.get('/employee/new', (req, res) => {
+//     res.render('new.ejs')
+// })
 
-app.post('/employee/', (req, res) => {
-    Employee.create(req.body, (err, data) => {
-        res.redirect('/employee')
-    })
-})
+// app.post('/employee/', (req, res) => {
+//     Employee.create(req.body, (err, data) => {
+//         res.redirect('/employee')
+//     })
+// })
 
-app.get('/employee/:id', (req, res) => {
-    Employee.findById(req.params.id, (err, data) => {
-        res.render('indiv.ejs', {
-            employee: data
-        })
-    })
-})
+// app.get('/employee/:id', (req, res) => {
+//     Employee.findById(req.params.id, (err, data) => {
+//         res.render('indiv.ejs', {
+//             employee: data
+//         })
+//     })
+// })
 
-app.get('/employee/:id/edit', (req, res) => {
-    Employee.findById(req.params.id, (err, data) => {
-        res.render('edit.ejs', {
-            employee: data
-        })
-    })
-})
+// app.get('/employee/:id/edit', (req, res) => {
+//     Employee.findById(req.params.id, (err, data) => {
+//         res.render('edit.ejs', {
+//             employee: data
+//         })
+//     })
+// })
 
-app.put('/employee/:id', (req, res) => {
-    Employee.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, data) => {
-        res.redirect('/employee')
-    })
-})
+// app.put('/employee/:id', (req, res) => {
+//     Employee.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, data) => {
+//         res.redirect('/employee')
+//     })
+// })
 
 //___________________
 //Listener
