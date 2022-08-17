@@ -80,12 +80,13 @@ app.get('/' , (req, res) => {
 
 
 app.get('/homepage', (req, res) => {
-    Employee.find({}, (err, data) => {
-        res.render('index.ejs', {
-            employee: data,
-            currentUser: req.session.currentUser
-        })
-    })
+    res.send('https://fast-atoll-14586.herokuapp.com')
+    // Employee.find({}, (err, data) => {
+    //     res.render('index.ejs', {
+    //         employee: data,
+    //         currentUser: req.session.currentUser
+    //     })
+    // })
 })
 
 app.get('/employee', (req, res) => {
