@@ -70,14 +70,16 @@ app.delete("/employee/:id", (req, res) => {
     })
 })
 
+sessions.get('/home', (req, res) => {
+    res.render('home.ejs')
+})
+
 app.get('/' , (req, res) => {
-  res.send('welcome.ejs');
+  res.render('welcome.ejs');
 });
 
 app.get('/login', (req, res) => {
-    res.render('login.ejs', {
-        currentUser: req.session.currentUser
-    })
+    res.render('login.ejs')
 })
 
 app.get('/homepage', (req, res) => {
@@ -97,10 +99,7 @@ app.get('/employee', (req, res) => {
 })
 
 app.get('/employee/new', (req, res) => {
-    res.render('new.ejs', {
-        currentUser: req.session.currentUser
-      
-    })
+    res.render('new.ejs')
 })
 
 app.post('/employee/', (req, res) => {
@@ -112,8 +111,7 @@ app.post('/employee/', (req, res) => {
 app.get('/employee/:id', (req, res) => {
     Employee.findById(req.params.id, (err, data) => {
         res.render('indiv.ejs', {
-            employee: data,
-            currentUser: req.session.currentUser
+            employee: data
         })
     })
 })
@@ -121,8 +119,7 @@ app.get('/employee/:id', (req, res) => {
 app.get('/employee/:id/edit', (req, res) => {
     Employee.findById(req.params.id, (err, data) => {
         res.render('edit.ejs', {
-            employee: data,
-            currentUser: req.session.currentUser
+            employee: data
         })
     })
 })
